@@ -22,6 +22,7 @@ const MANIFEST_DECLARING_PER_MONITOR_PIXELS_AND_LAYERED_CHILD_WINDOWS: &str = r#
 
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rerun-if-changed=../../packaging/windows/app-icon.ico");
     let target_operating_system = env::var("CARGO_CFG_TARGET_OS").unwrap_or_default();
     let target_toolchain = env::var("CARGO_CFG_TARGET_ENV").unwrap_or_default();
     let linker_can_embed_a_manifest = target_operating_system == "windows" && target_toolchain == "msvc";
@@ -33,4 +34,47 @@ fn main() {
     fs::write(&manifest_path, MANIFEST_DECLARING_PER_MONITOR_PIXELS_AND_LAYERED_CHILD_WINDOWS).expect("write manifest");
     println!("cargo:rustc-link-arg-bins=/MANIFEST:EMBED");
     println!("cargo:rustc-link-arg-bins=/MANIFESTINPUT:{}", manifest_path.display());
+    embed_icon_and_version_details(&build_output_directory);
 }
+
+#[cfg(windows)]
+fn embed_icon_and_version_details(build_output_directory: &std::path::Path) {
+    let icon_path = PathBuf::from(env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR"))
+        .join("../../packaging/windows/app-icon.ico")
+        .to_string_lossy()
+        .replace('\\', "/");
+    let version = env::var("CARGO_PKG_VERSION").expect("CARGO_PKG_VERSION");
+    let numeric_version = version.replace('.', ",") + ",0";
+    let resource_script = format!(
+        r#"1 ICON "{icon_path}"
+1 VERSIONINFO
+FILEVERSION {numeric_version}
+PRODUCTVERSION {numeric_version}
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "FileDescription", "Duke Wallpaper"
+      VALUE "ProductName", "Duke Wallpaper"
+      VALUE "FileVersion", "{version}"
+      VALUE "ProductVersion", "{version}"
+      VALUE "OriginalFilename", "duke-wallpaper.exe"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END
+"#
+    );
+    let resource_script_path = build_output_directory.join("duke-wallpaper.rc");
+    fs::write(&resource_script_path, resource_script).expect("write resource script");
+    embed_resource::compile(&resource_script_path, embed_resource::NONE)
+        .manifest_optional()
+        .expect("compile resources");
+}
+
+#[cfg(not(windows))]
+fn embed_icon_and_version_details(_: &std::path::Path) {}

@@ -18,6 +18,7 @@ see it.
 
 - [Art](#art)
 - [Requirements](#requirements)
+- [Install](#install)
 - [Build and run](#build-and-run)
 - [Control panel](#control-panel)
 - [Configuration](#configuration)
@@ -84,8 +85,28 @@ and passing flocks of birds.
   introduced with Windows 11 24H2 are supported; see
   [Getting behind the icons](#getting-behind-the-icons)).
 - **macOS** 11 or later, Apple Silicon or Intel.
-- A recent stable Rust (1.87 or newer; developed with 1.95). On Windows, the
-  MSVC toolchain; on macOS, the Xcode command line tools.
+- To build it yourself: a recent stable Rust (1.87 or newer; developed with
+  1.95). On Windows, the MSVC toolchain; on macOS, the Xcode command line
+  tools.
+
+## Install
+
+Download the Windows installer or the macOS disk image from the
+[latest release](https://github.com/Prorickey/duke-wallpaper/releases/latest):
+
+- **Windows:** `DukeWallpaper-Windows-Setup.exe` installs for your user only
+  (no administrator rights) into `%LOCALAPPDATA%\Programs\Duke Wallpaper`,
+  adds a Start menu entry and an entry in **Installed apps**.
+- **macOS:** `DukeWallpaper-macOS.dmg` holds `Duke Wallpaper.app`, a universal
+  app for Apple Silicon and Intel; drag it into **Applications**.
+
+Neither is signed by a paid developer certificate, so Windows SmartScreen and
+macOS Gatekeeper ask before the first start (**More info, Run anyway** on
+Windows; **System Settings > Privacy & Security > Open Anyway** on macOS).
+
+Pushing a tag such as `v1.0.0` runs `.github/workflows/release.yml`, which
+tests, builds both packages (`packaging/`) and publishes the release; the tag
+must match the version in `Cargo.toml`.
 
 ## Build and run
 
@@ -375,6 +396,13 @@ its own wallpaper (a slideshow or Spotlight), the static picture can show
 through for up to two seconds before the depth is repaired.
 
 ## Uninstall
+
+If you used the Windows installer, remove **Duke Wallpaper** in **Settings >
+Apps > Installed apps**: it stops the wallpaper, removes the program and the
+**Start with Windows** entry. Only the config and log folder stay (see
+[Configuration](#configuration)).
+
+Otherwise:
 
 1. Quit: icon, **Quit**.
 2. If you enabled **Start with Windows** / **Open at login**, untick it

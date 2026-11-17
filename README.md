@@ -49,25 +49,26 @@ the time of day, with a live preview. Choices are saved straight away.
   <img src="docs/img/control-panel.png" alt="The Duke Wallpaper control panel" width="496"/>
 </p>
 
-## Get it running
+## Download
 
-You need [Rust](https://rustup.rs). Then, on Windows:
+<p align="center">
+  <a href="https://github.com/Prorickey/duke-wallpaper/releases/latest/download/DukeWallpaper-Windows-Setup.exe"><b>Download for Windows</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/Prorickey/duke-wallpaper/releases/latest/download/DukeWallpaper-macOS.dmg"><b>Download for macOS</b></a>
+</p>
 
-```
-cargo run --release -p duke-windows
-```
+- **Windows 10 or 11:** run the installer. If SmartScreen says it protected your PC, choose **More info**,
+  then **Run anyway**.
+- **macOS 11 or later:** open the disk image and drag **Duke Wallpaper** into **Applications**. The first
+  time you open it, macOS says it cannot verify the app: open **System Settings > Privacy & Security**
+  and choose **Open Anyway**.
 
-or on macOS:
-
-```
-cargo run --release -p duke-mac
-```
-
-Tick **Start with Windows** (or **Open at login**) in the panel to keep it running after a restart.
+Tick **Start with Windows** (or **Open at login**) in the panel to keep it running after a restart. Every
+version is on the [releases page](https://github.com/Prorickey/duke-wallpaper/releases).
 
 ## Learn more
 
-- **[Technical documentation](documentation.md):** the art, configuration, how it gets behind the
+- **[Technical documentation](documentation.md):** the art, configuration, building from source, how it gets behind the
   desktop icons, troubleshooting and uninstalling.
 - **[Scene key](docs/chapel-key/):** a numbered map of every building and feature in the chapel scene.
 
