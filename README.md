@@ -9,6 +9,14 @@
 <p align="center"><i>An animated pixel-art live wallpaper for Windows and macOS</i></p>
 
 <p align="center">
+  <a href="https://github.com/Prorickey/duke-wallpaper/releases/latest/download/DukeWallpaper-Windows-Setup.exe"><img src="https://img.shields.io/badge/Download_for-Windows-012169?style=for-the-badge" alt="Download for Windows"/></a>
+  &nbsp;
+  <a href="https://github.com/Prorickey/duke-wallpaper/releases/latest/download/DukeWallpaper-macOS.dmg"><img src="https://img.shields.io/badge/Download_for-macOS-012169?style=for-the-badge" alt="Download for macOS"/></a>
+</p>
+
+<p align="center"><sub>Free · Windows 10 or 11 · macOS 11 or later · <a href="#download">install notes</a></sub></p>
+
+<p align="center">
   <img src="docs/img/chapel-class-change.gif" alt="Class change on the Duke Chapel steps, in pixel art" width="800"/>
 </p>
 
