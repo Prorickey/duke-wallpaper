@@ -1,0 +1,22 @@
+[package]
+name = "duke-mac"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "macOS host: draws the Duke scenes on the desktop behind the icons."
+
+[[bin]]
+name = "duke-wallpaper-mac"
+path = "src/main.rs"
+
+[dependencies]
+duke-core = { path = "../duke-core" }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+libc = "0.2"
+objc2 = "0.6"
+objc2-foundation = "0.3"
+objc2-app-kit = "0.3"
+objc2-quartz-core = "0.3"
+objc2-core-graphics = "0.3"
+objc2-core-foundation = "0.3"

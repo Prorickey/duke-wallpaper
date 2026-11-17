@@ -1,0 +1,9 @@
+[package]
+name = "duke-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "The Duke pixel-art scenes, weather and wallpaper engine, with no operating-system code."
+
+[dependencies]
+toml = { version = "1", default-features = false, features = ["std", "parse", "serde"] }
